@@ -5,7 +5,6 @@ import Image from '../Components/Image';
 
 const Photos = () => {
     const { allPhotos } = useContext(ContextConsumer);
-    console.log(useContext(ContextConsumer))
 
     return(
         <main className="photos">
