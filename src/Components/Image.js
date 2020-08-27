@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { ContextConsumer } from '../Contex';
 
-const Image = ({ key, img, className, toggleFavorite }) => {
+const Image = ({ key, img, className }) => {
     const [ hovered, setHovered] = useState(false);
+    const { toggleFavorite } = useContext(ContextConsumer);
 
     const heaartIcon = hovered && 
         <i 

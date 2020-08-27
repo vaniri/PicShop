@@ -4,12 +4,12 @@ import { getClass } from '../utils/index';
 import Image from '../Components/Image';
 
 const Photos = () => {
-    const { allPhotos, toggleFavorite  } = useContext(ContextConsumer);
+    const { allPhotos } = useContext(ContextConsumer);
 
     return(
         <main className="photos">
            {allPhotos.map((img, i) => (
-           <Image key={img.id} img={img} className={getClass(i)} toggleFavorite={toggleFavorite}/>
+           <Image key={img.id} img={img} className={getClass(i)} />
            ))}
         </main>
     )

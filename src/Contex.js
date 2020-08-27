@@ -9,10 +9,8 @@ const ContextProvider = ({ children }) => {
         console.log(img.id)
         console.log(id)
         if (img.id === id ) { 
-          console.log(1)
-         img.isFavorite = true; 
-        }
-        return img;
+        return { ...img, isFavorite: !img.isFavorite};
+      }
       })
       console.log(NewImgArr)
       return NewImgArr;
