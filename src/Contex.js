@@ -2,7 +2,21 @@ import React, { useState, useEffect } from "react";
 const { Provider, Consumer } = React.createContext();
 
 const ContextProvider = ({ children }) => {
-  const [allPhotos, setAllPhotos] = useState([]);
+  const [ allPhotos, setAllPhotos ] = useState([]);
+
+   const toggleFavorite = id => {
+      const NewImgArr = allPhotos.map(img => {
+        console.log(img.id)
+        console.log(id)
+        if (img.id === id ) { 
+          console.log(1)
+         img.isFavorite = true; 
+        }
+        return img;
+      })
+      console.log(NewImgArr)
+      return NewImgArr;
+    }
 
   const getPhoto = async () => {
     const res = await fetch(
@@ -16,7 +30,7 @@ const ContextProvider = ({ children }) => {
     getPhoto();
   }, []);
 
-  return <Provider value={{ allPhotos }}>{children}</Provider>;
+  return <Provider value={{ allPhotos, toggleFavorite }}>{children}</Provider>;
 };
 
 export { ContextProvider, Consumer as ContextConsumer };

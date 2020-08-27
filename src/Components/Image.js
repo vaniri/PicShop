@@ -1,18 +1,27 @@
 import React, { useState } from 'react';
 
-const Image = ({ key, img, className }) => {
+const Image = ({ key, img, className, toggleFavorite }) => {
     const [ hovered, setHovered] = useState(false);
-    const heaartIcon = hovered && <i className="fa fa-heart favorite" style={{fontSize:'36px'}}></i>;
+
+    const heaartIcon = hovered && 
+        <i 
+            className="fa fa-heart favorite" 
+            style={{fontSize:'36px'}}
+            onClick={() => toggleFavorite(img.id)} 
+        >  
+        </i>;
     const cartIcon = hovered &&  <i className="fa fa-plus-circle cart" style={{fontSize:'36px'}}></i>;
 
     return(
-        <div className={`${className} image-container`}>
+        <div 
+        className={`${className} image-container`}
+        onMouseEnter={() => setHovered(true)} 
+        onMouseLeave={() => setHovered(false)} 
+        >
             <img 
-                onMouseEnter={() => setHovered(true)} 
-                onMouseLeave={() => setHovered(false)} 
                 className="image-grid"
                 alt={key} 
-                src={img} 
+                src={img.url} 
             />
             {heaartIcon}
             {cartIcon}
