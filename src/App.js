@@ -10,7 +10,6 @@ const App = () => {
   return (
     <div>
       <Header />
-
       <Switch>
         <Route exact path='/'>
           <Photos />

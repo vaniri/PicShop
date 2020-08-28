@@ -1,20 +1,8 @@
 import React, { useState, useEffect } from "react";
-const { Provider, Consumer } = React.createContext();
+const Context = React.createContext();
 
 const ContextProvider = ({ children }) => {
   const [ allPhotos, setAllPhotos ] = useState([]);
-
-   const toggleFavorite = id => {
-      const NewImgArr = allPhotos.map(img => {
-        console.log(img.id)
-        console.log(id)
-        if (img.id === id ) { 
-        return { ...img, isFavorite: !img.isFavorite};
-      }
-      })
-      console.log(NewImgArr)
-      return NewImgArr;
-    }
 
   const getPhoto = async () => {
     const res = await fetch(
@@ -28,7 +16,19 @@ const ContextProvider = ({ children }) => {
     getPhoto();
   }, []);
 
-  return <Provider value={{ allPhotos, toggleFavorite }}>{children}</Provider>;
+  const toggleFavorite = id => {
+    const NewImgArr = allPhotos.map(img => {
+      console.log(img.id)
+      console.log(id)
+      if (img.id === id ) { 
+      return { ...img, isFavorite: !img.isFavorite};
+    }
+      return img;
+    });
+    setAllPhotos(NewImgArr);
+  }
+
+  return <Context.Provider value={{ allPhotos, toggleFavorite }}>{children}</Context.Provider>;
 };
 
-export { ContextProvider, Consumer as ContextConsumer };
+export { ContextProvider, Context};
