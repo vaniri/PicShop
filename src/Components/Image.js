@@ -4,7 +4,7 @@ import { Context } from '../Contex';
 
 const Image = ({ img, className }) => {
     const [hovered, setHovered] = useState(false);
-    const { toggleFavorite } = useContext(Context);
+    const { toggleFavorite, addToCart } = useContext(Context);
 
 
     const returnIcon = () => {
@@ -23,7 +23,11 @@ const Image = ({ img, className }) => {
         }
     }
 
-    const cartIcon = hovered && <i className="fa fa-plus-circle cart" style={{ fontSize: '36px' }}></i>;
+    const cartIcon = hovered && <i 
+        className="fa fa-plus-circle cart"
+        style={{ fontSize: '36px' }}
+        onClick={() => addToCart(img)}
+        ></i>;
 
     return (
         <div
