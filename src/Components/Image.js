@@ -1,7 +1,8 @@
 import React, { useState, useContext } from 'react';
+import PropTypes from 'prop-types';
 import { Context } from '../Contex';
 
-const Image = ({ key, img, className }) => {
+const Image = ({ img, className }) => {
     const [hovered, setHovered] = useState(false);
     const { toggleFavorite } = useContext(Context);
 
@@ -32,7 +33,7 @@ const Image = ({ key, img, className }) => {
         >
             <img
                 className="image-grid"
-                alt={key}
+                alt={img.key}
                 src={img.url}
             />
             {returnIcon()}
@@ -40,6 +41,16 @@ const Image = ({ key, img, className }) => {
 
         </div>
     )
+}
+
+Image.propTypes = {
+    className: PropTypes.string,
+    img: PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        url: PropTypes.string.isRequired,
+        isFavorite: PropTypes.bool
+
+    }).isRequired
 }
 
 export default Image;
