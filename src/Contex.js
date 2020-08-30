@@ -11,9 +11,7 @@ const ContextProvider = ({ children }) => {
         return [...previmg, img]
       }
       return previmg;
-    });
-    console.log(cartItems)
-    
+    })
   }
 
   const getPhoto = async () => {
@@ -38,7 +36,7 @@ const ContextProvider = ({ children }) => {
     setAllPhotos(NewImgArr);
   }
 
-  return <Context.Provider value={{ allPhotos, toggleFavorite, addToCart }}>{children}</Context.Provider>;
+  return <Context.Provider value={{ allPhotos, cartItems, toggleFavorite, addToCart }}>{children}</Context.Provider>;
 };
 
 export { ContextProvider, Context };

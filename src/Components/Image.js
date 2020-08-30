@@ -4,10 +4,10 @@ import { Context } from '../Contex';
 
 const Image = ({ img, className }) => {
     const [hovered, setHovered] = useState(false);
-    const { toggleFavorite, addToCart } = useContext(Context);
+    const { toggleFavorite, addToCart, cartItems } = useContext(Context);
 
 
-    const returnIcon = () => {
+    const returnFavoriteIcon = () => {
         if (img.isFavorite) {
             return <i
                 className="fa fa-heart favorite"
@@ -23,11 +23,21 @@ const Image = ({ img, className }) => {
         }
     }
 
-    const cartIcon = hovered && <i 
-        className="fa fa-plus-circle cart"
-        style={{ fontSize: '36px' }}
-        onClick={() => addToCart(img)}
-        ></i>;
+    const returnCartIcon = () => {
+        if (cartItems.some(item => item.id === img.id)) {
+            return <i 
+                className="fa fa-shopping-cart cart"
+                style={{ fontSize: '36px' }}
+                onClick={() => addToCart(img)}
+                ></i>;
+        } else if (hovered) {
+            return <i 
+                className="fa fa-plus-circle cart"
+                style={{ fontSize: '36px' }}
+                onClick={() => addToCart(img)}
+                ></i>;
+        }
+    }
 
     return (
         <div
@@ -40,9 +50,8 @@ const Image = ({ img, className }) => {
                 alt={img.key}
                 src={img.url}
             />
-            {returnIcon()}
-            {cartIcon}
-
+            {returnFavoriteIcon()}
+            {returnCartIcon()}
         </div>
     )
 }
