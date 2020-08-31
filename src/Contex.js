@@ -5,10 +5,14 @@ const ContextProvider = ({ children }) => {
   const [allPhotos, setAllPhotos] = useState([]);
   const [cartItems, setCartItems] = useState([]);
 
-  const addToCart = img => {
+  const managingCart = img => {
+    console.log("BEFORE",cartItems)
     setCartItems(previmg => {
-      if (!previmg.some(existImg => existImg.id === img.id)) {
+      if (!previmg.some(existItems => existItems.id === img.id)) {
         return [...previmg, img]
+      } else {
+        setCartItems(previtems => previtems.filter(item => item.id !== img.id));
+        console.log("AFTER:", cartItems)
       }
       return previmg;
     })
@@ -36,7 +40,7 @@ const ContextProvider = ({ children }) => {
     setAllPhotos(NewImgArr);
   }
 
-  return <Context.Provider value={{ allPhotos, cartItems, toggleFavorite, addToCart }}>{children}</Context.Provider>;
+  return <Context.Provider value={{ allPhotos, cartItems, toggleFavorite, managingCart }}>{children}</Context.Provider>;
 };
 
 export { ContextProvider, Context };

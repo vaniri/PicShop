@@ -4,20 +4,20 @@ import { Context } from '../Contex';
 
 const Image = ({ img, className }) => {
     const [hovered, setHovered] = useState(false);
-    const { toggleFavorite, addToCart, cartItems } = useContext(Context);
+    const { toggleFavorite, managingCart, cartItems } = useContext(Context);
 
 
     const returnFavoriteIcon = () => {
         if (img.isFavorite) {
             return <i
                 className="fa fa-heart favorite"
-                style={{ fontSize: '36px' }}
+                style={{ fontSize: '26px' }}
                 onClick={() => toggleFavorite(img.id)}
             ></i>
         } else if (hovered) {
             return <i
                 className="fa fa-heart-o favorite"
-                style={{ fontSize: '36px' }}
+                style={{ fontSize: '26px' }}
                 onClick={() => toggleFavorite(img.id)}
             ></i>;
         }
@@ -27,14 +27,14 @@ const Image = ({ img, className }) => {
         if (cartItems.some(item => item.id === img.id)) {
             return <i 
                 className="fa fa-shopping-cart cart"
-                style={{ fontSize: '36px' }}
-                onClick={() => addToCart(img)}
+                style={{ fontSize: '26px' }}
+                onClick={() => managingCart(img)}
                 ></i>;
-        } else if (hovered) {
+        } else if (hovered && !cartItems.some(item => item.id === img.id)) {
             return <i 
                 className="fa fa-plus-circle cart"
-                style={{ fontSize: '36px' }}
-                onClick={() => addToCart(img)}
+                style={{ fontSize: '26px' }}
+                onClick={() => managingCart(img)}
                 ></i>;
         }
     }
