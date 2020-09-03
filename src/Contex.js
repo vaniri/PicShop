@@ -6,15 +6,12 @@ const ContextProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
 
   const managingCart = img => {
-    console.log("BEFORE",cartItems)
     setCartItems(previmg => {
-      if (!previmg.some(existItems => existItems.id === img.id)) {
+      if (!previmg.some(existImg => existImg.id === img.id)) {
         return [...previmg, img]
       } else {
-        setCartItems(previtems => previtems.filter(item => item.id !== img.id));
-        console.log("AFTER:", cartItems)
+        return previmg.filter(item => item.id !== img.id);
       }
-      return previmg;
     })
   }
 
