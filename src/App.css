@@ -23,6 +23,7 @@ main.photos {
 
 main.cart-page {
   padding: 10px;
+  margin: 0 10px;
 }
 
 .cart-page > h1 {
@@ -85,11 +86,12 @@ img.image-grid {
   cursor: pointer;
 }
 
-.ri-heart-fill {
+.heart-icon {
   opacity: .7;
 }
 
-.ri-delete-bin-line, .ri-delete-bin-fill {
+.trash-icon {
+  margin: 0 5px;
   font-size: 1.3em;
   cursor: pointer;
 }

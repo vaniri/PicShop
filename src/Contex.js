@@ -6,13 +6,21 @@ const ContextProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
 
   const managingCart = img => {
-    setCartItems(previmg => {
-      if (!previmg.some(existImg => existImg.id === img.id)) {
-        return [...previmg, img]
+      if (!cartItems.some(existItem => existItem.id === img.id)) {
+        addToCart(img);
       } else {
-        return previmg.filter(item => item.id !== img.id);
+        deleteFromTheCart(img);
       }
-    })
+  }
+
+  const addToCart = img => {
+    setCartItems(prevItem => [...prevItem, img]);
+  }
+
+  const deleteFromTheCart = img => {
+      setCartItems(prevItems => {
+        return prevItems.filter(item => item.id !== img.id)
+      })
   }
 
   const getPhoto = async () => {
@@ -37,7 +45,7 @@ const ContextProvider = ({ children }) => {
     setAllPhotos(NewImgArr);
   }
 
-  return <Context.Provider value={{ allPhotos, cartItems, toggleFavorite, managingCart }}>{children}</Context.Provider>;
+  return <Context.Provider value={{ allPhotos, cartItems, toggleFavorite, managingCart, deleteFromTheCart }}>{children}</Context.Provider>;
 };
 
 export { ContextProvider, Context };

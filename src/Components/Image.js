@@ -10,13 +10,13 @@ const Image = ({ img, className }) => {
     const returnFavoriteIcon = () => {
         if (img.isFavorite) {
             return <i
-                className="fa fa-heart favorite"
+                className="fa fa-heart favorite heart-icon"
                 style={{ fontSize: '26px' }}
                 onClick={() => toggleFavorite(img.id)}
             ></i>
         } else if (hovered) {
             return <i
-                className="fa fa-heart-o favorite"
+                className="fa fa-heart-o favorite heart-icon"
                 style={{ fontSize: '26px' }}
                 onClick={() => toggleFavorite(img.id)}
             ></i>;
