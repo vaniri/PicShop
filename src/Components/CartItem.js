@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CartItem = ({ item, deleteFromTheCart }) => {
+const CartItem = ({ item, deleteFromTheCart, price }) => {
     return (
         <div className='cart-item'>
             <img src={item.url} width='130px' />
@@ -9,7 +9,7 @@ const CartItem = ({ item, deleteFromTheCart }) => {
                 onClick={() => deleteFromTheCart(item)} 
                 style={{fontSize:'24px'}}
             ></i>
-            <p>$5.99</p>
+            <p>{price}</p>
         </div>
     )
 }

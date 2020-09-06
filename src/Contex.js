@@ -23,6 +23,10 @@ const ContextProvider = ({ children }) => {
       })
   }
 
+  const emptyCart = () => {
+    setCartItems([]);
+  }
+
   const getPhoto = async () => {
     const res = await fetch(
       "https://raw.githubusercontent.com/bobziroll/scrimba-react-bootcamp-images/master/images.json"
@@ -45,7 +49,7 @@ const ContextProvider = ({ children }) => {
     setAllPhotos(NewImgArr);
   }
 
-  return <Context.Provider value={{ allPhotos, cartItems, toggleFavorite, managingCart, deleteFromTheCart }}>{children}</Context.Provider>;
+  return <Context.Provider value={{ allPhotos, cartItems, toggleFavorite, managingCart, deleteFromTheCart, emptyCart }}>{children}</Context.Provider>;
 };
 
 export { ContextProvider, Context };
