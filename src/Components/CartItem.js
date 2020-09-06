@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
+import useHover from '../hooks/useHover';
 
 const CartItem = ({ item, deleteFromTheCart, price }) => {
-    const [ hovered, setHovered ] = useState(true);
-    const iconClassName = hovered ? "fa fa-trash-o trash-icon" : "fa fa-trash trash-icon";
+    const [ hovered, ref ] = useHover();
+    const iconClassName = hovered ? "fa fa-trash trash-icon" : "fa fa-trash-o trash-icon" ;
 
     return (
         <div className='cart-item'>
@@ -10,8 +11,7 @@ const CartItem = ({ item, deleteFromTheCart, price }) => {
             <i 
                 class={iconClassName}
                 onClick={() => deleteFromTheCart(item)} 
-                onMouseOver={() => setHovered(false)}
-                onMouseLeave={() => setHovered(true)}
+                ref={ref}
                 ></i>
             <p>{price}</p>
         </div>
