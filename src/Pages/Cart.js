@@ -29,10 +29,11 @@ const Cart = () => {
             {cartItems.map(item => (
                 <CartItem key={item.id} item={item} deleteFromTheCart={deleteFromTheCart} price={price}/>
             ))}
-            <p className='total-cost'>Total: {total}</p>
-            <div className='order-button'>
-            <button onClick={() => placedOrder()}>{buttonText}</button>
-            </div>
+            {cartItems.length !== 0 ? <div><div className='order-button'>
+            <button onClick={() => placedOrder()}>{buttonText}</button></div> 
+            <p className='total-cost'>Total: {total}</p></div> :
+            <p>You have no items in your cart! Add something you like!</p>
+            }
         </main>
     )
 }
