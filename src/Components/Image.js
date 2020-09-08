@@ -48,7 +48,7 @@ const Image = ({ img, className }) => {
             <img
                 className="image-grid"
                 alt={img.key}
-                src={img.url}
+                src={img.urls.thumb}
             />
             {returnFavoriteIcon()}
             {returnCartIcon()}
